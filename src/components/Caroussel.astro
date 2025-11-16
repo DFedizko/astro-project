@@ -1,0 +1,37 @@
+---
+import Image from "astro/components/Image.astro";
+import IphoneImage from "@/assets/iphone-variant.webp";
+import MotorolaImage from "@/assets/motorola-variant.webp";
+import SamsungImage from "@/assets/samsung-variant.webp";
+import XiaomiImage from "@/assets/xiaomi-variant.webp";
+
+const variant = await Astro.locals.variant;
+
+const getVariantInfo = () => {
+	const altText = "Imagem de um";
+	switch (variant) {
+		case "a":
+			return { src: IphoneImage, alt: `${altText} iphone` }
+		case "b":
+			return { src: MotorolaImage, alt: `${altText} motorola` }
+		case "c":
+			return { src: SamsungImage, alt: `${altText} samsung` }
+		default:
+			return { src: XiaomiImage, alt: `${altText} xiaomi` }
+	}
+}
+
+const { src, alt } = getVariantInfo();
+---
+
+<div class="flex flex-col gap-4">
+	<Image 
+		src={src}
+		alt={alt}
+		width="200" 
+		height="200"
+		format="avif"
+		quality="mid"
+		priority
+	/>
+</div>

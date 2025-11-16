@@ -1,0 +1,14 @@
+---
+import PageTitle from "@/components/PageTitle.astro";
+import Layout from "@/layouts/Layout.astro";
+import Variant from "@/components/Variant.astro";
+
+const title = "About Page";
+
+export const prerender = true;
+---
+
+<Layout title={title}>
+	<PageTitle>{title}</PageTitle>
+	<Variant server:defer/>
+</Layout>

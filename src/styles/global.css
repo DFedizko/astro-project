@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer base {
+    * {
+        @apply text-gray-50;
+    }
+}

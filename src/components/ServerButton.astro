@@ -1,0 +1,22 @@
+<div>
+    <p class="text-lg text-center">Get Data</p>
+    <button
+        type="button"
+        class="cursor-pointer px-3 py-2 rounded-lg bg bg-gray-400 active:bg-gray-500"
+        id="server-btn"
+    >
+        <slot />
+    </button>
+</div>
+
+<script>
+    const btn = document.getElementById("server-btn");
+    btn?.addEventListener("click", async () => {
+        const res = await fetch("/api/postroute.json", {
+            method: "GET",
+        });
+        const data = await res.json();
+
+        console.log(data);
+    });
+</script>
