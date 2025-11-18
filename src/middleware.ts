@@ -8,7 +8,7 @@ export const onRequest = defineMiddleware((context, next) => {
             const sortedIndex = Math.floor(Math.random() * variants.length);
 
             resolve(variants[sortedIndex]);
-        }, 300), // Simula delay como se fosse posthog ou amplitude
+        }, 0), // Simula delay como se fosse posthog ou amplitude
     );
 
     // if (context.url.pathname.includes("/about")) {

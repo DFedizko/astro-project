@@ -2,6 +2,6 @@
 
 @layer base {
     * {
-        @apply text-gray-50;
+        @apply text-gray-950;
     }
 }

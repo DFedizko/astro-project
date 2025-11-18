@@ -9,17 +9,15 @@ const title = "Home Page";
 
 export const prerender = true;
 ---
-
 <Layout title={title}>
 	<PageTitle>{title}</PageTitle>
 
-	<Caroussel server:defer>
-		<div slot="fallback" class="animate-pulse bg-gray-200 w-[180px] 
-		mx-auto h-[200px] rounded-2xl"></div>
-	</Caroussel>
+	<Caroussel />
 
 	<h2 class="text-2xl">Client Button</h2>
-	<ClientButton client:load>Client Button</ClientButton>
+	<!-- <ClientButton client:load>
+		<p class="text-gray-50">Client Button</p>
+	</ClientButton> -->
 
 	<h2 class="text-2xl">Server Button</h2>
 	<ServerButton>Server Button</ServerButton>

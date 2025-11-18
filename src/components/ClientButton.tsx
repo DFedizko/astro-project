@@ -14,7 +14,7 @@ const ClientButton = ({
             <p className="text-lg text-center">Counter: {counter}</p>
             <button
                 type="button"
-                className="cursor-pointer px-3 py-2 rounded-lg bg bg-gray-400 active:bg-gray-500"
+                className="cursor-pointer px-3 py-2 rounded-lg bg-gray-950"
                 onClick={() => setCounter((prev) => prev + 1)}
             >
                 {children}
