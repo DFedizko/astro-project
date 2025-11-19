@@ -4,6 +4,10 @@ import IphoneImg from "@/assets/iphone-variant.webp";
 import MotorolaImage from "@/assets/motorola-variant.webp";
 import SamsungImage from "@/assets/samsung-variant.webp";
 import XiaomiImage from "@/assets/xiaomi-variant.webp";
+import BlurredIphoneImage from "@/assets/iphone-variant-small.webp";
+import BlurredMotorolaImage from "@/assets/motorola-variant-small.webp";
+import BlurredSamsungImage from "@/assets/samsung-variant-small.webp";
+import BlurredXiaomiImage from "@/assets/xiaomi-variant-small.webp";
 ---
 
 <style>
@@ -63,7 +67,7 @@ import XiaomiImage from "@/assets/xiaomi-variant.webp";
 
 <div 
 	class="blurred-img"
-	style="background-image: url(src/assets/iphone-variant-small.webp);"
+	style=`background-image: url(${BlurredIphoneImage.src});`
 >
 	<Image
 		src={IphoneImg}
@@ -76,7 +80,7 @@ import XiaomiImage from "@/assets/xiaomi-variant.webp";
 
 <div 
 	class="blurred-img"
-	style="background-image: url(src/assets/motorola-variant-small.webp);"
+	style=`background-image: url(${BlurredMotorolaImage.src});`
 >
 	<Image
 		src={MotorolaImage}
@@ -88,7 +92,7 @@ import XiaomiImage from "@/assets/xiaomi-variant.webp";
 </div>
 <div 
 	class="blurred-img"
-	style="background-image: url(src/assets/samsung-variant-small.webp);"
+	style=`background-image: url(${BlurredSamsungImage.src});`
 >
 	<Image
 		src={SamsungImage}
@@ -100,7 +104,7 @@ import XiaomiImage from "@/assets/xiaomi-variant.webp";
 </div>
 <div 
 	class="blurred-img"
-	style="background-image: url(src/assets/xiaomi-variant-small.webp);"
+	style=`background-image: url(${BlurredXiaomiImage.src});`
 >
 	<Image
 		src={XiaomiImage}
