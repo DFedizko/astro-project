@@ -1,76 +1,132 @@
 ---
-import type { ImageMetadata } from 'astro';
-import Image from 'astro/components/Image.astro';
-
-type Props = {
-	src: ImageMetadata | Promise<{
-        default: ImageMetadata;
-    }>;
-	blurSrc: string;
-	alt: string;
-	width: number | `${number}`;
-	height: number | `${number}`;
-	loading?: "lazy" | "eager";
-	quality?: "high" | "low" | "max" | "mid";
-	format?: "avif" | "jpeg" | "jpg" | "png" | "svg" | "webp";
-	priority?: boolean;
-}
-
-const { 
-	src,
-	blurSrc,
-	alt,
-	width,
-	height,
-	loading,
-	quality,
-	format,
-	priority
-} = Astro.props;
+import Image from "astro/components/Image.astro";
+import IphoneImg from "@/assets/iphone-variant.webp";
+import MotorolaImage from "@/assets/motorola-variant.webp";
+import SamsungImage from "@/assets/samsung-variant.webp";
+import XiaomiImage from "@/assets/xiaomi-variant.webp";
 ---
 
-<div
-	class=`progressive-wrapper relative w-[${width}px] h-[${height}px]`
+<style>
+	.blurred-img {
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		position: relative;
+		overflow: hidden;
+		filter: blur(8px);
+	}
+
+	.blurred-img::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		animation: shimmer 2.5s infinite;
+		border-radius: 1rem;
+		width: 80%;
+		margin: 0 auto;
+		z-index: 2;
+	}
+
+	.blurred-img img {
+		opacity: 0;
+		transition: opacity 250ms ease-in-out;
+		z-index: 1;
+	}
+
+	.loaded {
+		filter: none;
+	}
+
+    .loaded img {
+		opacity: 1;
+	}
+
+	.loaded::before {
+		animation: none;
+		content: none;
+	}
+	
+	@keyframes shimmer {
+		0% {
+			background-color: rgba(255, 255, 255, 0);
+		}
+
+		50% {
+			background-color: #d3d3d3a1;
+		}
+
+		100% {
+			background-color: rgba(255, 255, 255, 0);
+		}
+	}
+</style>
+
+<div 
+	class="blurred-img"
+	style="background-image: url(src/assets/iphone-variant-small.webp);"
 >
-	<div
-		id="blur-placeholder"
-		class="absolute inset-0 bg-cover bg-center blur-2xl transition-opacity
-			duration-300"
-		style=`background-image: url(${blurSrc})`
-	></div>
 	<Image
-		src={src}
-		alt={alt}
-		width={width}
-		height={height}
-		id="real-img"
-		loading={loading ?? "eager"}
-		format={format ?? "avif"}
-		quality={quality ?? "mid"}
-		priority={priority ?? false}
-		class="w-full h-full object-cover opacity-0 transition-opacity duration-300"
+		src={IphoneImg}
+		width={200}
+		height={200}
+		alt="Imagem de um iphone"
+		loading="lazy"
 	/>
 </div>
 
-<script is:inline>
+<div 
+	class="blurred-img"
+	style="background-image: url(src/assets/motorola-variant-small.webp);"
+>
+	<Image
+		src={MotorolaImage}
+		width={200}
+		height={200}
+		alt="Imagem de um motorola"
+		loading="lazy"
+	/>
+</div>
+<div 
+	class="blurred-img"
+	style="background-image: url(src/assets/samsung-variant-small.webp);"
+>
+	<Image
+		src={SamsungImage}
+		width={200}
+		height={200}
+		alt="Imagem de um samsung"
+		loading="lazy"
+	/>
+</div>
+<div 
+	class="blurred-img"
+	style="background-image: url(src/assets/xiaomi-variant-small.webp);"
+>
+	<Image
+		src={XiaomiImage}
+		width={200}
+		height={200}
+		alt="Imagem de um xiaomi"
+		loading="lazy"
+	/>
+</div>
+
+<script>
 	// @ts-nocheck
-	(() => {
-		const img = document.getElementById("real-img");
-		const placeholder = document.getElementById("blur-placeholder");
-
-		const onLoad = () => {
-			img.classList.remove("opacity-0");
-			img.classList.add("opacity-100");
-			placeholder.classList.add("opacity-0");
-			placeholder.addEventListener("transitionend", () => {
-				placeholder.style.display = "none";
-			});
+	const blurredDivs = document.querySelectorAll(".blurred-img");
+	blurredDivs.forEach(div => {
+		const img = div.querySelector("img");
+	
+		const loaded = () => {
+			div.classList.add("loaded");
+			div.style.background = "transparent";
 		}
-
-		if (img.complete) {
-			onLoad();
+	
+		if (img?.complete) {
+			loaded();
 		} else {
-			img.addEventListener("load", onLoad);
+			img?.addEventListener("load", loaded);
 		}
-	})();
+	});
+
 </script>
